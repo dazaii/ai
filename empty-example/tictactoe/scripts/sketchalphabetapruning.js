@@ -73,11 +73,7 @@ function mousePressed(){
 	var beforemove = availableSpots(board);
 	var aftermove;
 	if(owari == 1) return;
-	var aicloneboard = clone(board);
-	var aiavailable = availableSpots(aicloneboard);
-	var aieval, aiminEval = -1000;
-	var aibestmove = aiavailable[0];
-	if(aiavailable.length == 9){
+	
 		for(i=0; i<grid; i++){
 			for(j=0; j<grid; j++){
 				if(mouseX>j*r && mouseX<j*r+r && mouseY>i*r && mouseY<i*r+r){
@@ -87,18 +83,7 @@ function mousePressed(){
 				}
 			}
 		}
-	}else{
-		for(var i=0; i<aiavailable.length; i++){
-			aicloneboard[aiavailable[i]] = "X";
-			aieval = minimax(aicloneboard, -1000, 1000, false);
-			aicloneboard[aiavailable[i]] = aiavailable[i];
-			if(aieval > aiminEval){
-				aiminEval = aieval;
-				aibestmove = aiavailable[i];
-			}
-		}
-		board[aibestmove] = "X";
-	}
+	
 
 	
 	var cloneboard = clone(board);
@@ -120,7 +105,7 @@ function mousePressed(){
 	}
 	board[bestmove] = "O";
 	if(checkwinner(board) == -1){
-		demo = "Computer Wins!";
+		demo = "computer wins";
 		owari = 1;
 	}else if(checkwinner(board) == 1){
 		demo = "Congratulations!";
