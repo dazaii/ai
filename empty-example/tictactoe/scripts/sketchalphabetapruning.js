@@ -16,7 +16,7 @@ function setup(){
 	grid = row * col;
 }
 function draw(){
-	background(10,20,80);
+	background(20,20,60);
 		stroke(255);
 		noFill();
 		strokeWeight(16);
