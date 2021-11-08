@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the power of PI</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="../p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
+  
+</head>
+
+<body>
+  <script>
+    var scl = 20;
+    class Point{
+      constructor(x,y){
+        this.x = x;
+        this.y = y;
+      }
+      show(){
+        stroke(255);
+        strokeWeight(16);
+        point(this.x*scl, this.y*scl);
+      }
+      connect(point){
+        line(this.x * scl,this.y *scl,point.x *scl,point.y*scl);
+      }
+      //calculate the distance
+      distanceToPoint(point){
+        var xdiff = this.x-point.x;
+        var ydiff = this.y-point.y;
+        return sqrt(xdiff*xdiff + ydiff*ydiff);
+      }
+    }
+    var points = [];
+      function setup(){
+          createCanvas(600,600);
+          background(0);
+          
+          //var boid = new Boid();
+          //boid.show();
+          
+          points.push(new Point(1,1));
+          points.push(new Point(1,8));
+
+          var sc = 80;
+          for(let boid of points){
+            boid.show();
+            boid.connect(new Point(9,10));
+            var dist = boid.distanceToPoint(new Point(0,8));
+            fill(255);
+            noStroke();
+            textSize(40);
+            text(dist,sc*2, 1*sc);
+            sc+=40;
+          }
+      }
+  </script>  
+</body>
+
+</html>

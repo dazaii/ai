@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the power of PI</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="../p5.js"></script>
+  
+</head>
+
+<body>
+  <script>
+      var radius = 100;
+      var rotation = 0;
+      function setup(){
+          createCanvas(1280,700,WEBGL);
+          background(0);
+          rotateX(90);
+          rotateZ(90);
+          rotateY(10);
+          fill(92,170,144);
+          var x,y,z;
+          stroke(0);
+          strokeWeight(.6);
+          var total = 20;
+          var perlinoise = Math.floor(Math.random() * 50) + -50;
+          var slope = 0;
+          for (var i = 0; i <= total; i++) {
+          beginShape(TRIANGLE_STRIP);
+            var long = map(i,0,total,-PI,PI);
+            for(var j = 0; j <= total; j++){
+              
+              var latt = map(j,0,total,-HALF_PI,HALF_PI);
+              x = cos(latt) * sin(long) * (radius);
+              y = sin(latt) * sin(long) * (radius);
+              z = cos(long) * (radius);
+              vertex(x,y,z);
+
+
+              long = map(i+j,0,total,-PI,PI);
+              latt = map(j,0,total,-HALF_PI,HALF_PI);
+              x = cos(latt) * sin(long) * (radius);
+              y = sin(latt) * sin(long) * (radius);
+              z = cos(long) * (radius);
+              vertex(x,y,z);
+
+            }
+          endShape();
+          }
+      }
+  </script>  
+</body>
+
+</html>

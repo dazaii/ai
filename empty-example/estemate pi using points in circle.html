@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the power of PI</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="../p5.js"></script>
+  
+</head>
+
+<body>
+  <script>
+      var radius = 180;
+      function setup(){
+          createCanvas(500,500);
+          background(0);
+          var x,y;
+          noFill();
+          stroke(255);
+          strokeWeight(2);
+          angleMode(DEGREES)
+          for (var i = -180; i <= 180; i+=20) {
+          beginShape(POINTS);
+            for(var j = -180; j <= 180; j+=5){
+              x = cos(j) * i;
+              y = sin(j) * (radius);
+              vertex(x + 250,y + 250);
+            }
+          endShape();
+          }
+      }
+  </script>  
+</body>
+
+</html>

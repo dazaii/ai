@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>p5.js example</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="../p5.js"></script>
+  <script src="../addons/p5.sound.js"></script>
+  <script>
+      var key;
+      var playing = 1, env, button;
+      function setup(){
+          key = new p5.Oscillator();
+          button = createButton('play/pause');
+          key.setType('sine');
+          key.start();
+          key.freq(440);
+          key.amp(1);
+          createCanvas(100,100);
+          background(0);
+      }
+      function draw(){
+        button.mousePressed(toggle);
+      }
+      function toggle(){
+        if(playing){
+            key.amp(0);
+            playing = 0;
+        }else{
+            key.amp(1);
+            playing = 1;
+        }
+      }
+  </script>
+</head>
+
+<body>
+    
+</body>
+
+</html>

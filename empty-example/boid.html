@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the power of PI</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="../p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
+  
+</head>
+
+<body>
+  <script>
+    class Boid{
+      x = random(-1,1);
+      y = random(-1,1);
+      constructor(){
+        this.position = createVector(width/2,height/2);
+        this.velocity = createVector(this.x,this.y);
+        this.acceleration = createVector();
+      }
+      show(){
+        stroke(255);
+        strokeWeight(16);
+        point(this.position.x, this.position.y);
+      }
+      update(){
+        this.position.add(this.velocity);
+      }
+    }
+    var flock = [];
+      function setup(){
+          createCanvas(600,600);
+          background(0);
+          
+          //var boid = new Boid();
+          //boid.show();
+          
+          for(var i=0; i<10; i++){
+            flock.push(new Boid());
+          }
+
+      }
+      function draw(){
+        background(0);
+          for(let boid of flock){
+            boid.show();
+            boid.update();
+          }
+      }
+  </script>  
+</body>
+
+</html>

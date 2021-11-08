@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorant</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+    <script src="../p5.js"></script>
+  </head>
+
+  <body>
+    <script>
+      class Circle{
+        constructor(x,y){
+          this.r = 80;
+          this.x = x;
+          this.y = y;
+        }
+        show(){
+          ellipse(this.x, this.y, this.r, this.r);
+        }
+      }
+      function setup(){
+        createCanvas(500,500);
+        stroke(0);
+        strokeWeight(5);
+      }
+      function draw(){
+        stroke(0);
+        background(255);
+        noFill();
+        let c = new Circle(200,200);
+        c.show();
+        let c2 = new Circle(mouseX,mouseY);
+        c2.show();
+
+        noStroke();
+        fill(0);
+        textSize(20);
+        var d = dist(c.x, c.y, c2.x, c2.y);
+        text("Distance: "+d.toFixed(2), width-200, height-100);
+        var distMap = d.toFixed(0);
+        fill(0,20);
+        ellipse((c.x+c2.x)/2, (c.y+c2.y)/2, distMap, distMap);
+      }
+    </script>
+  </body>
+
+</html>

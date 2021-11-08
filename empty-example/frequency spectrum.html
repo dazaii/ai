@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>p5.js example</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="../p5.js"></script>
+  <script src="../addons/p5.sound.js"></script>
+  <script>
+        let music, fft, amp;
+        function preload(){
+            music = loadSound("../mylib/music/preaching.mp3");
+        }
+    function setup() {
+        createCanvas(410, 400);
+        noFill();
+        amp = new p5.Amplitude();
+        music.loop();
+        fft = new p5.FFT(0.8,128);
+    }
+
+    function draw() {
+        background(240);
+
+        let spectrum = fft.analyze();
+        var freqAt = [22,15,2,15,22];
+        for (i = 0; i < freqAt.length; i++) {
+            stroke(0);
+            strokeWeight(5);
+            var mappa = map(spectrum[freqAt[i]], 0, 1000, height/2, 0);
+            var horimap = map(i,0,freqAt.length-1, width/2- (freqAt.length*10), (width/2)+(freqAt.length*10));
+            line(horimap, height-mappa, horimap, mappa);
+        }
+        
+    }
+    function mousePressed(){
+        music.stop();
+    }
+  </script>
+</head>
+
+<body>
+    
+</body>
+
+</html>

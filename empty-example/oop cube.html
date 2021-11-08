@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the power of PI</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="../p5.js"></script>
+  <script src="../myclass.js"></script>
+  
+</head>
+
+<body>
+  <script>
+      var radius = 2;
+      var rotation = 0;
+      function setup(){
+          createCanvas(400,400,WEBGL);
+          noFill();
+      }
+      var angle = 0;
+      function draw(){
+          rotateY(-angle);
+          background(0);
+          var scale = 8;
+          for(var i=0;i<radius;i++){
+            for(var j=0; j<radius; j++){
+              for(var k=0; k<radius; k++){
+                new Cube(k,j,i,scale);
+              }
+            }
+          }
+          angle+=0.05;
+      }
+  </script>  
+</body>
+
+</html>

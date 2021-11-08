@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the power of PI</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="../p5.js"></script>
+  
+</head>
+
+<body>
+  <script>
+      class XYZ{
+        constructor(x,y,z){
+          this.x=x;
+          this.y=y;
+          this.z=z;
+        }
+      }
+      class Cube{
+        points = [];
+        constructor(x,y,z,scale){
+          this.x = x*scale;
+          this.y = y*scale;
+          this.z = z*scale;
+          this.scl = scale;
+          this.show();
+        }
+        show(){
+          stroke(255);
+          strokeWeight(2);
+          this.points.push(new XYZ(this.x*this.scl,this.y*this.scl,this.z*this.scl));
+          this.points.push(new XYZ((this.x+this.scl)*this.scl,this.y*this.scl,this.z*this.scl));
+          this.points.push(new XYZ(this.x*this.scl,(this.y+this.scl)*this.scl,this.z*this.scl));
+          this.points.push(new XYZ((this.x+this.scl)*this.scl,(this.y+this.scl)*this.scl,this.z*this.scl));
+          
+          this.points.push(new XYZ(this.x*this.scl,this.y*this.scl,(this.z+this.scl)*this.scl));
+          this.points.push(new XYZ((this.x+this.scl)*this.scl,this.y*this.scl,(this.z+this.scl)*this.scl));
+          this.points.push(new XYZ(this.x*this.scl,(this.y+this.scl)*this.scl,(this.z+this.scl)*this.scl));
+          this.points.push(new XYZ((this.x+this.scl)*this.scl,(this.y+this.scl)*this.scl,(this.z+this.scl)*this.scl));
+
+          for(var pt of this.points){
+            point(pt.x,pt.y,pt.z);
+          }
+        }
+        connect(){
+          for(var i=0;i<4;i++){
+            line(this.points[i].x, this.points[i].y, this.points[i].z, this.points[i+4].x, this.points[i+4].y, this.points[i+4].z);
+          }
+          for(var i=0;i<8;i+=2){
+            line(this.points[i].x, this.points[i].y, this.points[i].z,this.points[i+1].x, this.points[i+1].y, this.points[i+1].z);
+          }
+          for(var i=0;i<8;i+=4){
+            line(this.points[i].x, this.points[i].y, this.points[i].z,this.points[i+2].x, this.points[i+2].y, this.points[i+2].z);
+            line(this.points[i+1].x, this.points[i+1].y, this.points[i+1].z,this.points[i+3].x, this.points[i+3].y, this.points[i+3].z);
+          }
+        }
+      }
+
+      var radius = 1;
+      var rotation = 0;
+      function setup(){
+          createCanvas(400,400,WEBGL);
+          noFill();
+      }
+      var angle = 0;
+      function draw(){
+          rotateY(-angle);
+          background(0);
+          var scale = 10;
+          for(var i=0;i<radius;i++){
+            for(var j=0; j<radius; j++){
+              for(var k=0; k<radius; k++){
+                var d = new Cube(k,j,i,scale);
+                d.connect();
+              }
+            }
+          }
+          angle+=0.05;
+      }
+  </script>  
+</body>
+
+</html>

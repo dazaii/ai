@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the power of PI</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="../p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
+  
+</head>
+
+<body>
+  <script>
+      var radius = 200;
+      var x,y;
+      var block = 16;
+      var terrainLevel = 100;
+      var offsetScale = 0.06;
+      function setup(){
+          createCanvas(300,300,WEBGL);
+          strokeWeight(1);
+          
+      }
+      var travel = 0;
+      function draw(){
+          background(50,180,250);
+        var xoff=0;
+        var yoff=travel;
+        var scale = 20;
+        noStroke();
+        fill(255,220,180);
+        ellipse(-100,-90,100,100);
+        fill(255);
+        ellipse(100,-120,100,50);
+        ellipse(80,-90,100,50);
+        rotateX(1.26);
+        stroke(255);
+        noFill(0);
+        translate(-(scale/2)*block,-20);
+        for (var i = 0; i < 20; i++) {
+          beginShape(TRIANGLE_STRIP);
+          xoff = 0;
+          for(var j = 0; j < 20; j++){
+            var z = 0;
+            z = map(noise(xoff,yoff),0,1,-terrainLevel,terrainLevel);
+            vertex(j*block,i*(block-4),z);
+            z = map(noise(xoff,yoff+offsetScale),0,1,-terrainLevel,terrainLevel);
+            vertex(j*block,(i+1)*(block-4),z);
+            xoff+=offsetScale;
+            prevz = z;
+          }
+          endShape();
+          yoff+=offsetScale;
+        }
+        travel-=offsetScale/2;
+      }
+  </script>  
+</body>
+
+</html>

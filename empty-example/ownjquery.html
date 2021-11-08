@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the power of PI</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>  
+</head>
+  <h2 id="tits">Ohayou</h2>
+<body>
+  <script>
+      class Selector{
+        constructor(id){
+          this.element = document.getElementById(id);
+        }
+        html(str){
+          this.element.innerHTML = str;
+        }
+        hide(){
+          this.element.style.display = "none";
+        }
+      }
+      var h2 = new Selector("tits");
+      h2.html("uwuu");
+  </script>  
+</body>
+
+</html>

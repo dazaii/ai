@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorant</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+    <script src="../p5.js"></script>
+  </head>
+
+  <body>
+    <script>
+      class Circle{
+        constructor(x,y){
+          this.r = 80;
+          this.x = x;
+          this.y = y;
+        }
+        show(){
+          ellipse(this.x, this.y, this.r, this.r);
+        }
+      }
+
+      let leaves = [];
+      function setup(){
+        createCanvas(500,500);
+        frameRate(5);
+        var leaf = new Circle(random(width), random(height));
+        leaves.push(leaf);
+      }
+
+      function mousePressed(){
+        leaves.push(new Circle(mouseX, mouseY));
+      }
+
+      function draw(){
+        background(255);
+        stroke(0);
+        strokeWeight(5);
+
+        var avgX = 0;
+        var avgY = 0;
+        for(leaf of leaves){
+          avgX += leaf.x;
+          avgY += leaf.y;
+        }
+        avgX = avgX/leaves.length;
+        avgY = avgY/leaves.length;
+
+        strokeWeight(2);
+        stroke(0);
+        for(leaf of leaves){
+          line(avgX, avgY, leaf.x, leaf.y);
+          leaf.show();
+        }
+        strokeWeight(16);
+        stroke(255,0,0);
+        point(avgX, avgY);
+      }
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the power of PI</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="../p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.min.js"></script>
+  
+</head>
+
+<body>
+  <script>
+    class Star{
+      timer = 1;
+      x = random(-.5,.5);
+      y = random(-.5,.5);
+      size = random(1,3);
+      constructor(initx,inity){
+        this.position = createVector(initx,inity);
+        this.velocity = createVector(this.x,this.y);
+        this.acceleration = createVector();
+      }
+      show(){
+        stroke(255);
+        strokeWeight(this.size);
+        point(this.position.x, this.position.y);
+      }
+      update(){
+        this.position.add(this.velocity);
+        if(this.position.y > height || this.position.x > width || this.position.x<0 || this.position.y < 0){
+          this.position.x=this.rand();
+          this.position.y=this.rand();
+          this.explode();
+        }
+        this.timer++;
+      }
+      explode(){
+        var yeah = this.rand();
+        var you = this.rand();
+        for (var i = 0; i < 5; i++) {
+          universe.push(new Star(yeah, you));
+        }
+      }
+      rand(){
+        return random(height);
+      }
+    }
+    var universe = [];
+      function setup(){
+          createCanvas(600,600);
+          background(0);
+          
+          //var boid = new Boid();
+          //boid.show();
+          
+          for(var i=0; i<2; i++){
+            universe.push(new Star(random(width),random(height)));
+          }
+
+      }
+      function draw(){
+        background(0);
+          for(let boid of universe){
+            boid.show();
+            boid.update();
+          }
+      }
+  </script>  
+</body>
+
+</html>

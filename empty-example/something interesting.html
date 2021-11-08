@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>the power of PI</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="../p5.js"></script>
+  
+</head>
+
+<body>
+  <script>
+      var radius = 200;
+      var rotation = 0;
+      function setup(){
+          createCanvas(1280,700,WEBGL);
+          background(0);
+          noFill();
+          rotateX(-0.5);
+          var x,y,z;
+
+          stroke(255);
+          strokeWeight(1.8);
+          var total = 190;
+          var scl = 1;
+          for (var i = 0; i <= total; i++) {
+          beginShape();
+            var long = map(i,0,total,-PI,PI);
+            for(var j = 0; j <= total; j++){
+              
+              var latt = map(j,0,total,-HALF_PI,HALF_PI);
+              x = sin(latt) * sin(long) * (radius);
+              y = cos(long) * cos(latt) * (radius);
+              z = cos(long) * radius;
+              vertex(x*scl,y*scl,z*scl);
+
+            }
+          endShape();
+          }
+      }
+  </script>  
+</body>
+
+</html>

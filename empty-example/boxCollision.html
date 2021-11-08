@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorant</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+    <script src="../p5.js"></script>
+  </head>
+
+  <body>
+    <script>
+      class Box{
+        constructor(x,y){
+          this.r = 80;
+          this.x = x;
+          this.y = y;
+          //getting the bottom right point
+          this.x2 = x+this.r;
+          this.y2 = y+this.r;
+        }
+        show(){
+          rect(this.x, this.y, this.r, this.r);
+        }
+      }
+      function setup(){
+        createCanvas(500,500);
+        stroke(0);
+        strokeWeight(5);
+      }
+      function draw(){
+        background(255);
+        noFill();
+        let box = new Box(200,200);
+        box.show();
+        let box2 = new Box(mouseX-40,mouseY-40);
+        box2.show();
+        //checking points
+        if(box2.x <= box.x2 && box2.y <= box.y2 && box2.x2 >= box.x && box2.y2 >= box.y){
+          fill(0);
+          noStroke();
+          text("collided!", 50,50);
+          stroke(255,0,0);
+          
+        }else{
+          stroke(0);
+        }
+      }
+    </script>
+  </body>
+
+</html>
