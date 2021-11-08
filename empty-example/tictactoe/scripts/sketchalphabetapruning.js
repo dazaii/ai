@@ -6,7 +6,7 @@ var demo = "";
 var owari = 0;
 function setup(){
 	let cont = document.getElementById("container");
-	let canv = createCanvas(500,500);
+	let canv = createCanvas(400,400);
 	canv.parent(cont);
 	background(20);
 	r = width/3;
@@ -14,7 +14,6 @@ function setup(){
 	row = 3;
 	col = 3;
 	grid = row * col;
-	frameRate(30);
 }
 function draw(){
 	background(10,20,80);
