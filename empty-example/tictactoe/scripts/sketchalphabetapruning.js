@@ -68,7 +68,7 @@ function reset(){
 	owari = 0;
 	demo = "";
 }
-function mousePressed(){
+function mouseReleased(){
 	var beforemove = availableSpots(board);
 	var aftermove;
 	if(owari == 1) return;
