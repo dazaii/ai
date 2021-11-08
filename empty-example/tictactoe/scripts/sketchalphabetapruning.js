@@ -6,7 +6,7 @@ var demo = "";
 var owari = 0;
 function setup(){
 	let cont = document.getElementById("container");
-	let canv = createCanvas(300,300);
+	let canv = createCanvas(400,400);
 	canv.parent(cont);
 	background(20);
 	r = width/3;
